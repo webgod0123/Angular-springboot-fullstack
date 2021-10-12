@@ -1,0 +1,29 @@
+<kendo-grid
+  [data]="gridData"
+  [filter]="filter"
+  [filterable]="true"
+  (filterChange)="filterChange($event)"
+  [height]="400"
+>
+  <ng-template kendoGridToolbarTemplate>
+    <button type="button" kendoGridExcelCommand icon="file-excel">
+      Export to Excel
+    </button>
+  </ng-template>
+  <kendo-grid-column field="id" title="ID"> </kendo-grid-column>
+
+  <kendo-grid-column field="name" title="Name" width="230"> </kendo-grid-column>
+
+  <kendo-grid-column field="salary" title="Salary" width="120">
+  </kendo-grid-column>
+  <kendo-grid-column field="dept_id" title="Department"> </kendo-grid-column>
+  <kendo-grid-column field="experience" title="Experience"> </kendo-grid-column>
+  <kendo-grid-column title="Action"  width="300">
+    <ng-template kendoGridCellTemplate let-isNew="isNew" let-dataItem="dataItem">
+      <button (click)="deleteEmployee(dataItem.id)" class="btn btn-danger">Delete</button>
+      <button (click)="updateEmployee(dataItem.id)" class="btn btn-info" style="margin-left: 10px">Update</button>
+      <button (click)="employeeDetails(dataItem.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-excel fileName="Employees.xlsx"></kendo-grid-excel>
+</kendo-grid>
