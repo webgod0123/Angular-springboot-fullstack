@@ -22,8 +22,7 @@ export class EmployeeListComponent implements OnInit {
   // employees: Observable<Employee[]>;
   searchText: any;
   public filter: CompositeFilterDescriptor;
-  // public gridData: Observable<Employee[]>;
-  public gridData: any[];
+  public gridData: Observable<Employee[]>;
 
   constructor(
     private employeeService: EmployeeService,
@@ -35,19 +34,12 @@ export class EmployeeListComponent implements OnInit {
   }
 
   reloadData() {
-    // this.employeeService.getEmployeesList().subscribe(
-    //   (data) => {
-    //     this.gridData = data;
-    //   },
-    //   (error) => console.log(error)
-    // );
-    this.gridData = [
-      { id: 1, name: "aaa", salary: 100, dept_id: 12, experience: 10 },
-      { id: 1, name: "bbb", salary: 100, dept_id: 12, experience: 10 },
-      { id: 1, name: "ccc", salary: 100, dept_id: 12, experience: 10 },
-      { id: 1, name: "ddd", salary: 100, dept_id: 12, experience: 10 },
-      { id: 1, name: "eee", salary: 100, dept_id: 12, experience: 10 },
-    ];
+    this.employeeService.getEmployeesList().subscribe(
+      (data) => {
+        this.gridData = data;
+      },
+      (error) => console.log(error)
+    );
   }
 
   deleteEmployee(id: number) {
